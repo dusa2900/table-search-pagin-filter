@@ -1,0 +1,93 @@
+<div class="container">
+    <h1 class="title">Students Info
+      <select (change)="filterall($event)" [(ngModel)]="pricetype" >
+        <option>All</option>
+        <option>A-Z</option>
+        <option>Z-A</option>
+      
+    </select>
+  
+    <div class="container mt-3 my-search-form">
+        <input  class="form-control" type="text" name="search"   [(ngModel)]="searchText" autocomplete="off" placeholder="Search city, fullname, gender, phone, email &#61442;">
+    </div>
+    </h1>
+   
+  
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Gender</th>
+          <th scope="col">City</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stud of students | sort:pricetype | filter:searchText | paginate: { itemsPerPage: 10,currentPage:p}; let i=index">
+         
+          <td>{{i+1}}</td>
+          <td>{{stud.full_name}}</td>
+          <td>{{stud.email}}</td>
+          <td>{{stud.gender}}</td>
+          <td>{{stud.city}}</td>
+          <td>{{stud.phone}}</td>
+          <td>
+              <!-- <button class="btn btn-warning">Edit</button> -->
+              <button class="btn btn-success" (click)="popBox(stud.id)" >View</button>&nbsp;
+              <button class="btn btn-danger" (click)="deleteStudentById(stud.id)">Delete</button>&nbsp;
+          </td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <br><br>
+    <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
+  </div>
+  
+  
+  
+  <!-- Modal -->
+  <div class="box"  *ngIf="isBooleanValue">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Student Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <th>Id:</th>
+              <td>{{eachStudent.id}}</td>
+            </tr>
+            <tr>
+              <th>Full Name:</th>
+              <td>{{eachStudent.full_name}}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{eachStudent.email}}</td>
+            </tr>
+            <tr>
+              <th>Gender:</th>
+              <td>{{eachStudent.gender}}</td>
+            </tr>
+            <tr>
+              <th>City:</th>
+              <td>{{eachStudent.city}}</td>
+            </tr>
+            <tr>
+              <th>Phone:</th>
+              <td>{{eachStudent.phone}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
