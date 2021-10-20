@@ -7,13 +7,13 @@ import { student } from './../model/student';
 export class SortPipe implements PipeTransform {
 
   transform(students:student[],type:string): any {
-    console.log("pipe", students,type)
+    //console.log("pipe", students,type)
     if(type == "A-Z")
     {
-      return students.sort((x, y) => x.full_name.localeCompare(y.full_name));
+      return students.sort((x, y) => x.name.localeCompare(y.name));
     }else if ( type == "Z-A")
     {
-      return students.sort((x, y) => y.full_name.localeCompare(x.full_name));
+      return students.sort((x, y) => y.name.localeCompare(x.name));
 
     }else{
       return students

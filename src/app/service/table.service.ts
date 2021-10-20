@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 export class TableService {
   constructor(private http:HttpClient) { }
 
-  public apiUrl:string=" http://localhost:4000/info";
+ 
 
   getData():Observable<any>{
-    return this.http.get(this.apiUrl)
+    return this.http.get("https://jsonplaceholder.typicode.com/comments")
   }
 
   deleteData(id:number):Observable<any>
   {
-    return this.http.delete(`http://localhost:4000/info/${id}`)
+    return this.http.delete<any>(`https://jsonplaceholder.typicode.com/comments/${id}`)
   }
 }

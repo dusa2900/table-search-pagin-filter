@@ -19,9 +19,7 @@
           <th scope="col">#</th>
           <th scope="col">Full Name</th>
           <th scope="col">Email</th>
-          <th scope="col">Gender</th>
-          <th scope="col">City</th>
-          <th scope="col">Phone</th>
+          <th scope="col">Body</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -29,15 +27,13 @@
         <tr *ngFor="let stud of students | sort:pricetype | filter:searchText | paginate: { itemsPerPage: 10,currentPage:p}; let i=index">
          
           <td>{{i+1}}</td>
-          <td>{{stud.full_name}}</td>
+          <td>{{stud.name}}</td>
           <td>{{stud.email}}</td>
-          <td>{{stud.gender}}</td>
-          <td>{{stud.city}}</td>
-          <td>{{stud.phone}}</td>
+          <td>{{stud.body}}</td>
           <td>
               <!-- <button class="btn btn-warning">Edit</button> -->
-              <button class="btn btn-success" (click)="popBox(stud.id)" >View</button>&nbsp;
-              <button class="btn btn-danger" (click)="deleteStudentById(stud.id)">Delete</button>&nbsp;
+              <button class="btn btn-success" (click)="popBox(stud.id)" >View</button>&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger" (click)="deleteStudentById(stud.id)">Delete</button>
           </td>
         </tr>
       
@@ -65,23 +61,15 @@
             </tr>
             <tr>
               <th>Full Name:</th>
-              <td>{{eachStudent.full_name}}</td>
+              <td>{{eachStudent.name}}</td>
             </tr>
             <tr>
               <th>Email:</th>
               <td>{{eachStudent.email}}</td>
             </tr>
             <tr>
-              <th>Gender:</th>
-              <td>{{eachStudent.gender}}</td>
-            </tr>
-            <tr>
-              <th>City:</th>
-              <td>{{eachStudent.city}}</td>
-            </tr>
-            <tr>
-              <th>Phone:</th>
-              <td>{{eachStudent.phone}}</td>
+              <th>Body:</th>
+              <td>{{eachStudent.body}}</td>
             </tr>
           </table>
         </div>

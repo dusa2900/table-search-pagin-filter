@@ -27,17 +27,18 @@ export class TableComponent implements OnInit {
   getStudents()
   {
     this.service.getData().subscribe( res=>this.students=res)
-
   }
 
   deleteStudentById(x:number)
-
   {
     this.service.deleteData(x).subscribe(res=>{
       console.log("delete",res);
       this.getStudents();
     })
   }
+
+
+
 popBox(x:number)
 {
   this.isBooleanValue=true;
@@ -45,16 +46,13 @@ popBox(x:number)
   this.service.getData().subscribe( res=>
     {
       res.map((item:any)=>{
-       
-        if(item.id == x)
+        if(item.id === x)
         {
-          
-          this.eachStudent=item;
+         this.eachStudent=item;
          console.log("eachstudent",this.eachStudent)
         }
       })
-    
-    });
+      });
 }
 
 
